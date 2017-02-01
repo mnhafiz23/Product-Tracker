@@ -19,5 +19,8 @@
   },
   "frameworks": {
     "netcoreapp1.0": {}
+  },
+  "tooling": {
+    "defaultNamespace": "ProductTracker.DataAccess"
   }
 }
