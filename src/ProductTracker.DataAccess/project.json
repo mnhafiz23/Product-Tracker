@@ -1,13 +1,23 @@
 ﻿{
   "version": "1.0.0-*",
-
-  "dependencies": {
-    "NETStandard.Library": "1.6.0"
+  "buildOptions": {
+    "emitEntryPoint": true
   },
-
+  "dependencies": {
+    "Microsoft.NETCore.App": {
+      "version": "1.1.0",
+      "type": "platform"
+    },
+    "Microsoft.EntityFrameworkCore": "1.1.0",
+    "Microsoft.EntityFrameworkCore.Design": "1.1.0",
+    "Microsoft.EntityFrameworkCore.Sqlite": "1.1.0",
+    "ProductTracker.Interface": "1.0.0-*",
+    "ProductTracker.Domain": "1.0.0-*"
+  },
+  "tools": {
+    "Microsoft.EntityFrameworkCore.Tools.DotNet": "1.1.0-preview4-final"
+  },
   "frameworks": {
-    "netstandard1.6": {
-      "imports": "dnxcore50"
-    }
+    "netcoreapp1.0": {}
   }
 }
