@@ -10,7 +10,7 @@ namespace ProductTracker.DataAccess
         public ApplicationContext Create(DbContextFactoryOptions options)
         {
             var builder = new DbContextOptionsBuilder<ApplicationContext>();
-            string connectionString = "DataSource=ProductTracker.db";
+            string connectionString = "DataSource=C:\\Dev\\Personal\\Product-Tracker\\ProductTracker.db";
             builder.UseSqlite(connectionString);
             return new ApplicationContext(builder.Options);
         }

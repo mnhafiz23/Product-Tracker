@@ -8,7 +8,7 @@ using ProductTracker.DataAccess;
 namespace ProductTracker.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20170201040055_Init")]
+    [Migration("20170203042601_Init")]
     partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

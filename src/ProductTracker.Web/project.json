@@ -27,7 +27,8 @@
     "ProductTracker.Domain": "1.0.0-*",
     "ProductTracker.Interface": "1.0.0-*",
     "ProductTracker.Service": "1.0.0-*",
-    "ProductTracker.ViewModel": "1.0.0-*"
+    "ProductTracker.ViewModel": "1.0.0-*",
+    "AutoMapper": "5.2.0"
   },
 
   "tools": {

@@ -1,0 +1,30 @@
+﻿<div ng-app="app" ng-controller="customer as vm">
+  
+    <br />
+    <table class="table table-bordered table-condensed table-hover table-striped">
+        <thead>
+            <tr>
+                <th>
+                    Fullname
+                </th>
+                <th>
+                    Mobile Number
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="client in vm.clients">
+                <td>
+                    {{client.fullname}}
+                </td>
+                <td>
+                    {{client.mobileNum}}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<script src="~/lib/angular/angular.min.js"></script>
+<script src="~/lib/app/app.module.js"></script>
+<script src="~/lib/app/controller/customer.controller.js"></script>

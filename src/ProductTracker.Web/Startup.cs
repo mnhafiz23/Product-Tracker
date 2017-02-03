@@ -1,10 +1,17 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using ProductTracker.DataAccess;
+using ProductTracker.DataAccess.Common;
+using ProductTracker.Domain;
+using ProductTracker.Interface.Common;
+using ProductTracker.Interface.Web;
+using ProductTracker.Service.Web;
+using ProductTracker.ViewModel;
 using System.IO;
 
 namespace ProductTracker.Web
@@ -30,10 +37,14 @@ namespace ProductTracker.Web
             // Add framework services.
             services.AddMvc();
            
-            string connectionString = "DataSource=" + Path.Combine(Directory.GetDirectoryRoot(Directory.GetCurrentDirectory()), 
+            string connectionString = "DataSource=" + Path.Combine("C:\\Dev\\Personal\\Product-Tracker", 
                 Configuration.GetConnectionString("DefaultConnection"));
 
-            services.AddDbContext<ApplicationContext>();
+            services.AddDbContext<ApplicationContext>(options =>
+          options.UseSqlite(connectionString));
+            services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+            services.AddTransient<ICustomerService, CustomerService>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -59,6 +70,11 @@ namespace ProductTracker.Web
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
+            });
+
+            Mapper.Initialize(c =>
+            {
+                c.CreateMap<Customer, CustomerViewModel>().ReverseMap();
             });
         }
     }
