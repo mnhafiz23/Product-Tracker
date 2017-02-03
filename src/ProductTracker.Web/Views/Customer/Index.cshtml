@@ -1,30 +1,55 @@
-﻿<div ng-app="app" ng-controller="customer as vm">
-  
-    <br />
-    <table class="table table-bordered table-condensed table-hover table-striped">
-        <thead>
-            <tr>
-                <th>
-                    Fullname
-                </th>
-                <th>
-                    Mobile Number
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr ng-repeat="client in vm.clients">
-                <td>
-                    {{client.fullname}}
-                </td>
-                <td>
-                    {{client.mobileNum}}
-                </td>
-            </tr>
-        </tbody>
-    </table>
+﻿<link href="~/css/app/customer/index.css" rel="stylesheet" />
+
+<div ng-app="app" ng-controller="customerController as vm">
+    <div st-table="vm.displayCustomers" st-pipe="vm.getCustomers" class="table-responsive">
+        <table class="table table-bordered table-condensed table-hover">
+            <caption>
+                <input type="text" st-search="" placeholder="Search Customer" class="form-control" />
+            </caption>
+            <thead>
+                <tr>
+                    <th st-sort="fullname" st-skip-natural="true" st-sort-default="true">
+                        Fullname
+                    </th>
+                    <th>
+                        Mobile Number
+                    </th>
+                    <th>
+                        Action
+                    </th>
+                </tr>
+                <tr ng-show="vm.loadingBar">
+                        <th colspan="3">
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-striped active" role="progressbar" style="width:100%">
+                                    Loading
+                                </div>
+                            </div>
+                        </th>
+                    </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="customer in vm.displayCustomers" st-select-mode="" st-select-row="customer">
+                    <td>
+                        {{customer.fullname}}
+                    </td>
+                    <td>
+                        {{customer.mobileNum}}
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-default" title="Delete">
+                            <span class="glyphicon glyphicon-trash"></span>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>           
+        </table>
+        <div st-pagination="" st-items-by-page="2" st-template="view/pagination.html"></div>
+    </div>
 </div>
 
 <script src="~/lib/angular/angular.min.js"></script>
 <script src="~/lib/app/app.module.js"></script>
+<script src="~/lib/angular-smart-table/dist/smart-table.min.js"></script>
 <script src="~/lib/app/controller/customer.controller.js"></script>
+<script src="~/lib/app/services/customer.service.js"></script>

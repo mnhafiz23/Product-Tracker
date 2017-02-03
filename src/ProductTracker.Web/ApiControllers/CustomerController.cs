@@ -22,9 +22,9 @@ namespace ProductTracker.Web.ApiControllers
         }
         // GET: api/values
         [HttpGet]
-        public IEnumerable<CustomerViewModel> Get()
-        {
-            return Mapper.Map<IEnumerable<CustomerViewModel>>(_customerService.GetAll());
+        public IActionResult Get()
+        {            
+            return Ok(Mapper.Map<IEnumerable<CustomerViewModel>>(_customerService.GetAll()));
         }
 
         // GET api/values/5
